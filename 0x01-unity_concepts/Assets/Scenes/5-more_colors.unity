@@ -193,7 +193,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3423375574169701665, guid: 8790832f921ac566bade9403ab853633, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3423375574169701665, guid: 8790832f921ac566bade9403ab853633, type: 3}
       propertyPath: m_LocalPosition.x
@@ -529,7 +529,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3423375574169701665, guid: 8790832f921ac566bade9403ab853633, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3423375574169701665, guid: 8790832f921ac566bade9403ab853633, type: 3}
       propertyPath: m_LocalPosition.x
@@ -590,7 +590,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3423375574169701665, guid: 8790832f921ac566bade9403ab853633, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3423375574169701665, guid: 8790832f921ac566bade9403ab853633, type: 3}
       propertyPath: m_LocalPosition.x
@@ -697,5 +697,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 3423375574169701671, guid: 8790832f921ac566bade9403ab853633, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe6854d0d962b371990b631f257007e9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8790832f921ac566bade9403ab853633, type: 3}
