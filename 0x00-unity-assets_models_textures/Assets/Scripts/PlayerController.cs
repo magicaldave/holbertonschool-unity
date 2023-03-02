@@ -14,8 +14,13 @@ public class PlayerController : MonoBehaviour
 	private float turnSmoothTime = 10.0f;
 	private float turnSmoothVelocity;
 	// Jump-related vars
-	private float jumpHeight = 1.0f;
+	private float _maxJumpHeight = 45.0f;
+	private float heightJumped;
 	private float gravityValue = -9.81f;
+	private Vector3 playerVelocity;
+	private bool groundedPlayer;
+	private bool jumped = false;
+	private Vector3 movement = Vector3.zero;
 
 	// Player input as X/Y axes
 	private Vector2 _movementInput;
@@ -40,19 +45,23 @@ public class PlayerController : MonoBehaviour
 	void OnJump()
 	{
 		Debug.Log("Jump event activated");
+		if (control.isGrounded)
+		{
+			jumped = true;
+			heightJumped = 0;
+		}
 	}
 
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+		Debug.Log(control.isGrounded);
 		moveKbd();
-		// if (Input.GetButtonDown("Jump"))
-		// 	transform.Translate(new Vector3(0, 5.25f, 0));
  	}
 
 	void moveKbd()
 	{
-		Vector3 movement = Quaternion.Euler(0, cam.eulerAngles.y, 0) * new Vector3(_movementInput.x, 0.0f, _movementInput.y).normalized;
+		movement = Quaternion.Euler(0, cam.eulerAngles.y, 0) * new Vector3(_movementInput.x, 0.0f, _movementInput.y).normalized;
 
 		// Dead code. So is flooring the Z and X values, commented out below.
 		// Now, we capture the intended camera angle by directly referencing the Y value of
@@ -75,9 +84,22 @@ public class PlayerController : MonoBehaviour
 			// 	float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 			// 	transform.rotation = (Quaternion.Euler(0f, angle, 0f));
 		}
-		control.Move(movement * Time.deltaTime * speed);
-		control.Move(Physics.gravity * Time.deltaTime);
+		movement *= speed;
+		// Debug.Log("Gravity is being applied.");
+		// Debug.Log("Height Jumped: " + heightJumped + "Max Jump Height: " + _maxJumpHeight + "Movement.y: " + movement.y);
+		if (jumped && heightJumped < _maxJumpHeight)
+		{
+			movement.y = (heightJumped += (_maxJumpHeight / 10));
+		}
+		else
+		{
+			jumped = false;
+			movement.y += Physics.gravity.y;
+		}
 
+
+
+		control.Move(movement * Time.deltaTime);
 	}
 
 	void setRandomColor(Material update)
