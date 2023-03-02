@@ -14,12 +14,10 @@ public class PlayerController : MonoBehaviour
 	private float turnSmoothTime = 10.0f;
 	private float turnSmoothVelocity;
 	// Jump-related vars
-	private float _maxJumpHeight = 45.0f;
+	private float _maxJumpHeight;
 	private float heightJumped;
-	private float gravityValue = -9.81f;
-	private Vector3 playerVelocity;
-	private bool groundedPlayer;
 	private bool jumped = false;
+	private bool disallownewjump = false;
 	private Vector3 movement = Vector3.zero;
 
 	// Player input as X/Y axes
@@ -39,67 +37,96 @@ public class PlayerController : MonoBehaviour
 
 	void OnReset()
 	{
-		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+		// SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+		setRandomColor(body);
+		setRandomColor(eyes);
 	}
 
 	void OnJump()
 	{
-		Debug.Log("Jump event activated");
-		if (control.isGrounded)
+		if (!disallownewjump || control.isGrounded)
 		{
 			jumped = true;
 			heightJumped = 0;
 		}
+		if (!control.isGrounded)
+		{
+			disallownewjump = true;
+			_maxJumpHeight = 15f;
+		}
+		else
+		{
+			disallownewjump = false;
+			_maxJumpHeight = 30f;
+		}
+
 	}
 
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		Debug.Log(control.isGrounded);
-		moveKbd();
+		captureAndSync();
+		handleJump();
+		control.Move(movement * Time.deltaTime);
+		resetPosition();
  	}
 
-	void moveKbd()
+	void captureAndSync()
 	{
-		movement = Quaternion.Euler(0, cam.eulerAngles.y, 0) * new Vector3(_movementInput.x, 0.0f, _movementInput.y).normalized;
-
-		// Dead code. So is flooring the Z and X values, commented out below.
-		// Now, we capture the intended camera angle by directly referencing the Y value of
-		// The camera's rotation and multiplying by the input vector. Much cleaner.
-
-		// movement = cam.forward * movement.z + cam.right * movement.x;
-		// expectedRotation.z = expectedRotation.x = 0;
-
-		// This one orients the player according to the camera, instead we orient
-		// towards the player's movement. Here for posterity.
-		// transform.localEulerAngles = new Vector3(0, cam.localEulerAngles.y);
+		movement = (Quaternion.Euler(0, cam.eulerAngles.y, 0) * new Vector3(_movementInput.x, 0.0f, _movementInput.y).normalized) * speed;
 
 		if (movement.magnitude != 0)
-		{
-			Quaternion expectedRotation = Quaternion.LookRotation(movement, Vector3.up);
-			transform.rotation = Quaternion.Slerp(transform.rotation, expectedRotation, turnSmoothTime * Time.deltaTime);
+			syncAvatarWithDirection();
 
-			// Alternatively, the math can be done manually with this approach. I think above is much cleaner.
-			// 	float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-			// 	float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-			// 	transform.rotation = (Quaternion.Euler(0f, angle, 0f));
-		}
-		movement *= speed;
-		// Debug.Log("Gravity is being applied.");
-		// Debug.Log("Height Jumped: " + heightJumped + "Max Jump Height: " + _maxJumpHeight + "Movement.y: " + movement.y);
+	}
+
+	void syncAvatarWithDirection()
+	{
+		Quaternion expectedRotation = Quaternion.LookRotation(movement, Vector3.up);
+		transform.rotation = Quaternion.Slerp(transform.rotation, expectedRotation, turnSmoothTime * Time.deltaTime);
+
+		// Alternatively, the math can be done manually with this approach. I think above is much cleaner.
+		// 	float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+		// 	float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+		// 	transform.rotation = (Quaternion.Euler(0f, angle, 0f));
+	}
+
+	void handleJump()
+	{
 		if (jumped && heightJumped < _maxJumpHeight)
 		{
-			movement.y = (heightJumped += (_maxJumpHeight / 10));
+			movement.y = (heightJumped += (_maxJumpHeight / 15));
+			transform.localScale += new Vector3(0,
+							    disallownewjump ? .0166f : .0333f,
+							    disallownewjump ? -.010f : -.020f);
 		}
 		else
 		{
+			restoreShape();
 			jumped = false;
-			movement.y += Physics.gravity.y;
+			movement.y = transform.position.y > 15f
+				? Physics.gravity.y * 5
+				: Physics.gravity.y;
 		}
+	}
 
+	void restoreShape(float xDesired = 1f, float yDesired = 1f, float zDesired = 1f)
+	{
+		if (transform.localScale.y > yDesired)
+			transform.localScale -= new Vector3(0, .0333f, 0);
+		if (transform.localScale.z < zDesired)
+			transform.localScale += new Vector3(0, 0, .02f);
+	}
 
+	void resetPosition()
+	{
 
-		control.Move(movement * Time.deltaTime);
+		if (transform.position.y < -15f)
+		{
+			control.enabled = false;
+			transform.position = new Vector3(0, 100, 0);
+			control.enabled = true;
+		}
 	}
 
 	void setRandomColor(Material update)
