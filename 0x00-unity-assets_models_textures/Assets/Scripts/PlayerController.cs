@@ -94,13 +94,16 @@ public class PlayerController : MonoBehaviour
 		if (jumped && heightJumped < _maxJumpHeight)
 		{
 			movement.y = (heightJumped += (_maxJumpHeight / 15));
+			// Quite literally squashes and stretches the character.
+			// restoreShape brings them back to their original form.
 			transform.localScale += new Vector3(0,
-							    disallownewjump ? .0166f : .0333f,
-							    disallownewjump ? -.010f : -.020f);
+							    disallownewjump ? transform.localScale.y * 0.0166f : transform.localScale.y * .0333f,
+							    disallownewjump ? -transform.localScale.z * 0.0100000f: -transform.localScale.z * 0.020000f);
 		}
 		else
 		{
-			restoreShape();
+			if (transform.localScale != Vector3.one)
+				restoreShape();
 			jumped = false;
 			movement.y = transform.position.y > 15f
 				? Physics.gravity.y * 5
