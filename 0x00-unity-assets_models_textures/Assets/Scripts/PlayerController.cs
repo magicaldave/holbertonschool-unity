@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 		if (!disallownewjump || control.isGrounded)
 		{
 			disallownewjump = false;
-			_maxJumpHeight = 30f;
+			_maxJumpHeight = 40f;
 			jumped = true;
 			heightJumped = 0;
 		}
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 		if (!control.isGrounded)
 		{
 			disallownewjump = true;
-			_maxJumpHeight = 15f;
+			_maxJumpHeight = 20f;
 		}
 
 	}
@@ -93,31 +93,22 @@ public class PlayerController : MonoBehaviour
 	{
 		if (jumped && heightJumped < _maxJumpHeight)
 		{
-			movement.y = (heightJumped += (_maxJumpHeight / 15));
+			movement.y += ((heightJumped += (_maxJumpHeight / 20)));
 			// Quite literally squashes and stretches the character.
 			// restoreShape brings them back to their original form.
-			transform.localScale += new Vector3(0,
-							    disallownewjump ? transform.localScale.y * 0.0166f : transform.localScale.y * .0333f,
-							    disallownewjump ? -transform.localScale.z * 0.0100000f: -transform.localScale.z * 0.020000f);
+			transform.localScale += new Vector3(0, .0125f, -0.0050000f);
 		}
 		else
 		{
 			if (transform.localScale != Vector3.one)
-				restoreShape();
+				transform.localScale -= new Vector3(0, 0.0125f, -0.005f);
 			jumped = false;
-			movement.y = transform.position.y > 15f
-				? Physics.gravity.y * 5
-				: Physics.gravity.y;
+			movement.y = Physics.gravity.y;
 		}
 	}
 
 	void restoreShape(float xDesired = 1f, float yDesired = 1f, float zDesired = 1f)
 	{
-		Debug.Log("Restoring character shape!");
-		if (transform.localScale.y > yDesired)
-			transform.localScale -= new Vector3(0, transform.localScale.y * 0.0166000f, 0);
-		if (transform.localScale.z < zDesired)
-			transform.localScale += new Vector3(0, 0, transform.localScale.z * .0100000f);
 	}
 
 	void resetPosition()
@@ -126,7 +117,7 @@ public class PlayerController : MonoBehaviour
 		if (transform.position.y < -15f)
 		{
 			control.enabled = false;
-			transform.position = new Vector3(0, 100, 0);
+			transform.position = new Vector3(0, 25, 0);
 			control.enabled = true;
 		}
 	}
