@@ -113,10 +113,11 @@ public class PlayerController : MonoBehaviour
 
 	void restoreShape(float xDesired = 1f, float yDesired = 1f, float zDesired = 1f)
 	{
+		Debug.Log("Restoring character shape!");
 		if (transform.localScale.y > yDesired)
-			transform.localScale -= new Vector3(0, .0333f, 0);
+			transform.localScale -= new Vector3(0, transform.localScale.y * 0.0166000f, 0);
 		if (transform.localScale.z < zDesired)
-			transform.localScale += new Vector3(0, 0, .02f);
+			transform.localScale += new Vector3(0, 0, transform.localScale.z * .0100000f);
 	}
 
 	void resetPosition()
