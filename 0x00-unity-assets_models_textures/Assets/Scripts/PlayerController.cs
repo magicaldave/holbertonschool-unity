@@ -46,18 +46,16 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!disallownewjump || control.isGrounded)
 		{
+			disallownewjump = false;
+			_maxJumpHeight = 30f;
 			jumped = true;
 			heightJumped = 0;
 		}
+
 		if (!control.isGrounded)
 		{
 			disallownewjump = true;
 			_maxJumpHeight = 15f;
-		}
-		else
-		{
-			disallownewjump = false;
-			_maxJumpHeight = 30f;
 		}
 
 	}
