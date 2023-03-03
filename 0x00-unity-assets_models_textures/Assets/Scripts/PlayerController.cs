@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 		if (!disallownewjump || control.isGrounded)
 		{
 			disallownewjump = false;
-			_maxJumpHeight = 40f;
+			_maxJumpHeight = 30f;
 			jumped = true;
 			heightJumped = 0;
 		}
@@ -93,18 +93,17 @@ public class PlayerController : MonoBehaviour
 	{
 		if (jumped && heightJumped < _maxJumpHeight)
 		{
-			movement.y += ((heightJumped += (_maxJumpHeight / 20)));
+			movement.y += ((heightJumped += (_maxJumpHeight / 20)) * 3.0f);
 			// Quite literally squashes and stretches the character.
 			// restoreShape brings them back to their original form.
 			transform.localScale += new Vector3(0, .0125f, -0.0050000f);
 		}
 		else
-		{
-			if (transform.localScale != Vector3.one)
-				transform.localScale -= new Vector3(0, 0.0125f, -0.005f);
 			jumped = false;
-			movement.y = Physics.gravity.y;
-		}
+
+		if (transform.localScale != Vector3.one)
+			transform.localScale -= new Vector3(0, 0.0125f, -0.005f);
+		movement.y += Physics.gravity.y;
 	}
 
 	void restoreShape(float xDesired = 1f, float yDesired = 1f, float zDesired = 1f)
