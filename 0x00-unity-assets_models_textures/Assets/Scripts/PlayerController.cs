@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 	public CharacterController control;
-	public Material body;
-	public Material eyes;
+	public Material body, eyes, nose, hat;
 	private Rigidbody rb;
 	public Transform cam;
 	public float speed;
@@ -26,8 +25,7 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
-		setRandomColor(body);
-		setRandomColor(eyes);
+		setRandomColors();
 	}
 
 	void OnMove(InputValue moveInput)
@@ -38,24 +36,26 @@ public class PlayerController : MonoBehaviour
 	void OnReset()
 	{
 		// SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-		setRandomColor(body);
-		setRandomColor(eyes);
+		setRandomColors();
 	}
 
 	void OnJump()
 	{
 		if (!disallownewjump || control.isGrounded)
 		{
-			disallownewjump = false;
-			_maxJumpHeight = 30f;
+
+			if (!control.isGrounded)
+			{
+				disallownewjump = true;
+				_maxJumpHeight = 20f;
+			}
+			else
+			{
+				disallownewjump = false;
+				_maxJumpHeight = 30f;
+			}
 			jumped = true;
 			heightJumped = 0;
-		}
-
-		if (!control.isGrounded)
-		{
-			disallownewjump = true;
-			_maxJumpHeight = 20f;
 		}
 
 	}
@@ -65,6 +65,25 @@ public class PlayerController : MonoBehaviour
 	{
 		captureAndSync();
 		handleJump();
+		 RaycastHit hit;
+		 // int layerMask = 1 << 8;
+		 // Does the ray intersect any objects excluding the player layer
+		 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.5f))
+		 {
+			 if(hit.collider.tag == "MobilePlatform")
+			 {
+				 // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.yellow);
+				 // Debug.Log(movement);
+				 movement.x += (hit.collider.transform.position.x - transform.position.x);
+				 // Debug.Log(movement);
+				 // Debug.Log("Did Hit");
+			 }
+		 }
+		 else
+		 {
+			 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.white);
+			 // Debug.Log("Did not Hit");
+		 }
 		control.Move(movement * Time.deltaTime);
 		resetPosition();
  	}
@@ -93,21 +112,19 @@ public class PlayerController : MonoBehaviour
 	{
 		if (jumped && heightJumped < _maxJumpHeight)
 		{
-			movement.y += ((heightJumped += (_maxJumpHeight / 20)) * 3.0f);
+			movement.y += ((heightJumped += (_maxJumpHeight / 20)) * 1.5f);
 			// Quite literally squashes and stretches the character.
 			// restoreShape brings them back to their original form.
-			transform.localScale += new Vector3(0, .0125f, -0.0050000f);
+			transform.localScale += new Vector3(0, 0.015f, -0.005f);
 		}
 		else
+		{
 			jumped = false;
+			if (transform.localScale != Vector3.one)
+				transform.localScale -= new Vector3(0, 0.015f, -0.005f);
+		}
 
-		if (transform.localScale != Vector3.one)
-			transform.localScale -= new Vector3(0, 0.0125f, -0.005f);
 		movement.y += Physics.gravity.y;
-	}
-
-	void restoreShape(float xDesired = 1f, float yDesired = 1f, float zDesired = 1f)
-	{
 	}
 
 	void resetPosition()
@@ -121,10 +138,11 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void setRandomColor(Material update)
+	void setRandomColors()
 	{
-		if (update is Material Update)
-			Update.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
-
+		body.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
+		eyes.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
+		nose.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
+		hat.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
 	}
 }
