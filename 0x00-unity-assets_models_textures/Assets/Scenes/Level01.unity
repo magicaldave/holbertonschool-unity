@@ -2090,6 +2090,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5646088386346733904, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f48a1000acd0b73e9466dc5df55b03d, type: 2}
+    - target: {fileID: 5646088386956206137, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 611ac08071cb8aee2aa19f1d141c0ce5, type: 2}
     - target: {fileID: 5646088386956206139, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2138,10 +2146,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5646088387883644905, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f48a1000acd0b73e9466dc5df55b03d, type: 2}
     - target: {fileID: 7739334229629157560, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1565845164}
+    - target: {fileID: 7739334229629157560, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 2100000, guid: 611ac08071cb8aee2aa19f1d141c0ce5, type: 2}
+    - target: {fileID: 7739334229629157560, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
+      propertyPath: eyes
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f48a1000acd0b73e9466dc5df55b03d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
 --- !u!33 &7056058374895791648
