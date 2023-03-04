@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &48275611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5345745760209956225, guid: 626d9426eeca2f531927d985491394d5, type: 3}
+  m_PrefabInstance: {fileID: 5345745760233049370}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &132197153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3891859563897092452, guid: 6e6920da141c5aafd9a469449a363d50, type: 3}
@@ -292,6 +303,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &349254849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 349254852}
+  - component: {fileID: 349254851}
+  - component: {fileID: 349254850}
+  m_Layer: 0
+  m_Name: TimerTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &349254850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349254849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc4afd88ee10ff8487af80aaddd2b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 999892753}
+--- !u!65 &349254851
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349254849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &349254852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349254849}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &458676307
 GameObject:
@@ -496,7 +566,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 129192421897508751, guid: 6e6920da141c5aafd9a469449a363d50, type: 3}
       propertyPath: seedSpeed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 129192421897508751, guid: 6e6920da141c5aafd9a469449a363d50, type: 3}
       propertyPath: moveRange.x
@@ -572,7 +642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6309192706032310680, guid: 6e6920da141c5aafd9a469449a363d50, type: 3}
       propertyPath: m_Name
-      value: Mobile Platform
+      value: NWFastPlat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e6920da141c5aafd9a469449a363d50, type: 3}
@@ -776,6 +846,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &999892753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6159786318792528544, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
+  m_PrefabInstance: {fileID: 6159786318867576241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1012364275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,6 +2316,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5345745760209956224, guid: 626d9426eeca2f531927d985491394d5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345745760209956224, guid: 626d9426eeca2f531927d985491394d5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345745760209956224, guid: 626d9426eeca2f531927d985491394d5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626d9426eeca2f531927d985491394d5, type: 3}
 --- !u!4 &5485766136427292155 stripped
@@ -2307,6 +2394,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1565845164}
+    - target: {fileID: 8090357217080537635, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
+      propertyPath: yScaleFactor
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090357217080537635, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
+      propertyPath: zScaleFactor
+      value: -0.0125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e1f9a30463dc30ca7e13018cb4e9de, type: 3}
 --- !u!33 &7056058374895791648
@@ -2829,6 +2924,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.99999994, z: 1.0000001}
   m_Center: {x: 0, y: 0.000000029802322, z: 0}
+--- !u!114 &7960310034086771119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999892753}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b555d70329cd6b48aecea8a0507e367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerText: {fileID: 48275611}
 --- !u!1001 &8815563221873914943
 PrefabInstance:
   m_ObjectHideFlags: 0
