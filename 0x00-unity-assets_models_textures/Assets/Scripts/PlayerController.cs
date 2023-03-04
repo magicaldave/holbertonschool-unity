@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 	private bool jumped = false;
 	private bool disallownewjump = false;
 	private Vector3 movement = Vector3.zero;
+	[SerializeField] private float zScaleFactor, yScaleFactor;
 
 	// Player input as X/Y axes
 	private Vector2 _movementInput;
@@ -115,14 +116,14 @@ public class PlayerController : MonoBehaviour
 			movement.y += ((heightJumped += (_maxJumpHeight / 20)) * 1.5f);
 			// Quite literally squashes and stretches the character.
 			// restoreShape brings them back to their original form.
-			transform.localScale += new Vector3(0, 0.015f, -0.005f);
+			transform.localScale += new Vector3(0, yScaleFactor, zScaleFactor);
 		}
 		else
 		{
 			jumped = false;
 			if (transform.localScale != Vector3.one)
-				transform.localScale -= new Vector3(0, 0.015f, -0.005f);
-		}
+				transform.localScale -= new Vector3(0, yScaleFactor, zScaleFactor);
+        }
 
 		movement.y += Physics.gravity.y;
 	}
