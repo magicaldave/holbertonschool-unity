@@ -102,11 +102,6 @@ public class PlayerController : MonoBehaviour
 	{
 		Quaternion expectedRotation = Quaternion.LookRotation(movement, Vector3.up);
 		transform.rotation = Quaternion.Slerp(transform.rotation, expectedRotation, turnSmoothTime * Time.deltaTime);
-
-		// Alternatively, the math can be done manually with this approach. I think above is much cleaner.
-		// 	float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-		// 	float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-		// 	transform.rotation = (Quaternion.Euler(0f, angle, 0f));
 	}
 
 	void handleJump()
