@@ -1,23 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+// using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
 	public CharacterController control;
-	public Material body, eyes, nose, hat;
-	private Rigidbody rb;
+	// Exploding Face
+	private Transform[] facePieces;
+	private bool faceExploded = false;
+
 	public Transform cam;
 	public float speed;
 	// Speed and Duration of player rotation
 	private float turnSmoothTime = 10.0f;
-	private float turnSmoothVelocity;
 	// Jump-related vars
 	private float _maxJumpHeight;
 	private float heightJumped;
 	private bool jumped = false;
 	private bool disallownewjump = false;
-	private Vector3 movement = Vector3.zero;
+	public static Vector3 movement = Vector3.zero;
 	[SerializeField] private float zScaleFactor, yScaleFactor;
 
 	// Player input as X/Y axes
