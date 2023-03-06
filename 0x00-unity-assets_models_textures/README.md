@@ -21,3 +21,7 @@
 </ul>
 
 <p>Save <code>Player</code> as a Prefab into a folder named <code>Prefabs</code>. Make sure that when you make changes to the <code>Player</code> Prefab, you Apply the changes at the top of the Inspector window.</p>
+
+Assets Used:
+[Skyboxes: Farland Skies - Cloudy Crown Skyboxes](https://assetstore.unity.com/packages/2d/textures-materials/sky/farland-skies-cloudy-crown-60004)
+[Kenney's Nature Pack Extended](https://kenney.nl/assets/nature-pack-extended)
