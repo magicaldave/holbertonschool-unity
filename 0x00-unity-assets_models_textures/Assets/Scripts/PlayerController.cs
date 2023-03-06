@@ -61,30 +61,16 @@ public class PlayerController : MonoBehaviour
 
 	}
 
+	void OnExplode()
+	{
+		ExplodeFace();
+	}
+
 	// Update is called once per frame
 	void FixedUpdate()
 	{
 		captureAndSync();
 		handleJump();
-		 RaycastHit hit;
-		 // int layerMask = 1 << 8;
-		 // Does the ray intersect any objects excluding the player layer
-		 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.5f))
-		 {
-			 if(hit.collider.tag == "MobilePlatform")
-			 {
-				 // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.yellow);
-				 // Debug.Log(movement);
-				 movement.x += (hit.collider.transform.position.x - transform.position.x);
-				 // Debug.Log(movement);
-				 // Debug.Log("Did Hit");
-			 }
-		 }
-		 else
-		 {
-			 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.white);
-			 // Debug.Log("Did not Hit");
-		 }
 		control.Move(movement * Time.deltaTime);
 		resetPosition();
  	}
