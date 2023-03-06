@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
 			jumped = false;
 			if (transform.localScale != Vector3.one)
 				transform.localScale -= new Vector3(0, yScaleFactor, zScaleFactor);
-        }
+		}
 
 		movement.y += Physics.gravity.y;
 	}
