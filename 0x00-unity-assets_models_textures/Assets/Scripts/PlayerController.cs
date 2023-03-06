@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
 
 	void Start()
 	{
-		rb = GetComponent<Rigidbody>();
 		setRandomColors();
+		facePieces = GameObject.Find("Face").gameObject.GetComponentsInChildren<Transform>();
 	}
 
 	void OnMove(InputValue moveInput)
