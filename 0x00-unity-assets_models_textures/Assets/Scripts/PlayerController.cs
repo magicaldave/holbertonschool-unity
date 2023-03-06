@@ -136,9 +136,60 @@ public class PlayerController : MonoBehaviour
 
 	void setRandomColors()
 	{
-		body.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
-		eyes.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
-		nose.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
-		hat.SetColor("_Color", new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255)));
+		// Get all renderer components from the object
+		Renderer[] bodyMats = GetComponentsInChildren<Renderer>();
+		// Make a new list to store objects which have matching colors
+		List<GameObject> matchParentsList = new List<GameObject>();
+
+		foreach (var item in bodyMats)
+		{
+			if (item.transform.parent == null || // Don't add the main body to the list
+			    item.transform.parent.tag != "MatchingColors")// Check for the right tag
+			{
+				// Generate a random color and alpha, then update the Renderer
+				Color32 randomColor = new Color32((byte)Random.Range(0, 255),
+								  (byte)Random.Range(0, 255),
+								  (byte)Random.Range(0, 255),
+								  (byte)Random.Range(0, 255));
+				item.material.SetColor("_Color", randomColor);
+			}
+			else if (!matchParentsList.Contains(item.transform.parent.gameObject))
+				matchParentsList.Add(item.transform.parent.gameObject);
+		}
+
+		// This runs on parents whose children should have matching colors
+		foreach (GameObject matchParent in matchParentsList)
+		{
+			Color32 randomColor = new Color32((byte)Random.Range(0, 255),
+							  (byte)Random.Range(0, 255),
+							  (byte)Random.Range(0, 255),
+							  (byte)Random.Range(0, 255));
+
+			// Get all renderer objects, which are children of the current GO
+			Renderer[] matchChildren = matchParent.GetComponentsInChildren<Renderer>();
+
+			foreach (var item in matchChildren)
+				item.material.SetColor("_Color", randomColor);
+
+		}
+	}
+
+	public void ExplodeFace()
+	{
+		if (!faceExploded)
+		{
+			foreach (var item in facePieces)
+			{
+				Rigidbody faceGrav = item.gameObject.AddComponent<Rigidbody>();
+				faceGrav.useGravity = true;
+				faceGrav.AddExplosionForce(15f, item.position, 7.5f, 3.0F);
+				item.transform.parent = null;
+			}
+			faceExploded = true;
+		}
+		else
+			foreach (var item in facePieces)
+				item.gameObject.GetComponent<Rigidbody>().AddExplosionForce(150f, item.position, 75f, 30F);
+
 	}
 }
