@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 	// Exploding Face
 	private Transform[] facePieces;
 	private bool faceExploded = false;
+	public Transform newFaceParent;
 
 	public Transform cam;
 	public float speed;
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
 	void Start()
 	{
 		setRandomColors();
-		facePieces = GameObject.Find("Face").gameObject.GetComponentsInChildren<Transform>();
+		facePieces = this.transform.Find("Face").gameObject.GetComponentsInChildren<Transform>();
 	}
 
 	void OnMove(InputValue moveInput)
@@ -98,7 +99,6 @@ public class PlayerController : MonoBehaviour
 		{
 			movement.y += ((heightJumped += (_maxJumpHeight / 20)) * 1.5f);
 			// Quite literally squashes and stretches the character.
-			// restoreShape brings them back to their original form.
 			transform.localScale += new Vector3(0, yScaleFactor, zScaleFactor);
 		}
 		else
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
 	void resetPosition()
 	{
 
-		if (transform.position.y < -15f)
+		if (transform.position.y <= -6.5f)
 		{
 			control.enabled = false;
 			transform.position = new Vector3(0, 25, 0);
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
 				Rigidbody faceGrav = item.gameObject.AddComponent<Rigidbody>();
 				faceGrav.useGravity = true;
 				faceGrav.AddExplosionForce(15f, item.position, 7.5f, 3.0F);
-				item.transform.parent = null;
+				item.transform.parent = newFaceParent;
 			}
 			faceExploded = true;
 		}

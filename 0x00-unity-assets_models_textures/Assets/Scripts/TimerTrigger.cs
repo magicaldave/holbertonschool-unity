@@ -6,7 +6,7 @@ public class TimerTrigger : MonoBehaviour
 	{
 
 		// Find and enable the Timer script once the player starts moving
-		GameObject.Find("Player").GetComponent<Timer>().enabled = true;
+		other.GetComponent<Timer>().enabled = true;
 
 		// Destroy this object once its job is done
 		Destroy(gameObject);
