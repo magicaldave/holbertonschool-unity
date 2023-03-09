@@ -75,7 +75,6 @@ public class PlayerController : MonoBehaviour
 		captureAndSync();
 		handleJump();
 		control.Move(movement * Time.deltaTime);
-		resetPosition();
  	}
 
 	void captureAndSync()
@@ -109,17 +108,6 @@ public class PlayerController : MonoBehaviour
 		}
 
 		movement.y += Physics.gravity.y;
-	}
-
-	void resetPosition()
-	{
-
-		if (transform.position.y <= -6.5f)
-		{
-			control.enabled = false;
-			transform.position = new Vector3(0, 25, 0);
-			control.enabled = true;
-		}
 	}
 
 	void setRandomColors()
