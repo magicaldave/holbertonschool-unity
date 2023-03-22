@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Reset",
+                    "name": "Random",
                     "type": "Button",
                     "id": "7e585416-626b-45ec-99ca-b365fd6010ae",
                     "expectedControlType": "Button",
@@ -36,6 +36,15 @@
                     "name": "Explode",
                     "type": "Button",
                     "id": "7c13dc78-998c-4687-b7c1-29913f38ea69",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "bd362df8-bbf6-4925-8f12-025385342715",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -171,7 +180,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reset",
+                    "action": "Random",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -183,6 +192,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Explode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4949b455-2036-4906-8532-fdaf90cfecc2",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
