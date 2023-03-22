@@ -35377,37 +35377,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1281879219}
     m_Modifications:
-    - target: {fileID: 1045543675, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 1106882785892158812, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 3643843035185004232, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 7042032277438806293, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
       propertyPath: m_Name
       value: WinFlag
       objectReference: {fileID: 0}
-    - target: {fileID: 7042032277438806293, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 7042032277438806297, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7042032277438806297, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6383127
-      objectReference: {fileID: 0}
-    - target: {fileID: 7042032277438806297, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6666667
       objectReference: {fileID: 0}
     - target: {fileID: 7042032277438806297, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35448,10 +35424,6 @@ PrefabInstance:
     - target: {fileID: 7042032277438806297, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7888963880275247554, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b461a2d75332914e7aa81fcfae17513a, type: 3}
