@@ -2065,14 +2065,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 21479660}
     m_Modifications:
-    - target: {fileID: 684348978893765335, guid: 0390cba178626e739bf167c3b892baad, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 684348978893765335, guid: 0390cba178626e739bf167c3b892baad, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1280382313929681320, guid: 0390cba178626e739bf167c3b892baad, type: 3}
       propertyPath: m_Name
       value: BackButton
@@ -2174,14 +2166,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 21479660}
     m_Modifications:
-    - target: {fileID: 3588162230299132796, guid: 87f4263ab94b207b8a8950abe89c6ca6, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588162230299132796, guid: 87f4263ab94b207b8a8950abe89c6ca6, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5447266570013933163, guid: 87f4263ab94b207b8a8950abe89c6ca6, type: 3}
       propertyPath: m_Name
       value: ApplyButton
